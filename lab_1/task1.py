@@ -81,7 +81,8 @@ class Polynomial:
     def __mul__(self,other):
         b = Polynomial()
         for i in range(0,len(self.a)):
-            b.addTerm(self.a[i].coffiecient * other.a[i].coffiecient,self.a[i].degree+other.a[i].degree)
+            for j in range(0,len(other.a)):
+                b.addTerm(self.a[i].coffiecient * other.a[j].coffiecient,self.a[i].degree+other.a[j].degree)
 
         return b
     
@@ -99,25 +100,6 @@ class Polynomial:
         return self
 
 
-                
-            
-
-            
-        
-            
-
-        
-            
-    
-
-
-
-
-   
-            
-
-
-
 
 def main(): 
     p1 = Polynomial()
@@ -125,25 +107,25 @@ def main():
     p1.addTerm(7, 3)
     p1.addTerm(-1, 2)
     p1.addTerm(9, 0)
-    print(p1)
-    print(p1.getDegree())
-    print(p1.getCofficient(0))
-    print(p1.evaluate(2))
+    print(f"Poly1: {p1}")
+    print(f"Degree of Poly1: {p1.getDegree()}")
+    print(f"Coffiecient of Poly1 at power 0: {p1.getCofficient(0)}")
+    print(f"Evaluate Poly1 at 2: {p1.evaluate(2)}")
     p2 = Polynomial()
     p2.addTerm(2, 5)
     p2.addTerm(8, 3)
     p2.addTerm(1, 2)
     p2.addTerm(5, 0)
-    print(p2)
-    print(p1+p2)
+    print(f"Poly2: {p2}")
+    print(f"Adding Poly1 and Poly2: {p1+p2}")
     n = (p1.derivative())
-    print(n)
-    print(n.antiDerivative(9))
-    print(p1.addtoCofficient(2,3))
-    print(p1.setCofficient(2,3))
-    print(p1*p2)
-    print(p1-p2)
-    print(p1.clear())
+    print(f"Derivative of Poly1: {n}")
+    print(f"Antiderivative of Poly1 at constant 9: {n.antiDerivative(9)}")
+    print(f"Adding to Cofficient in Poly1 at power 3: {p1.addtoCofficient(2,3)}")
+    print(f"Setting newCofficient in Poly1 at power 3: {p1.setCofficient(7,3)}")
+    print(f"Multiplying Poly1 and Poly2: {p1*p2}")
+    print(f"Subtracting Poly1 and Poly2: {p1-p2}")
+    print(f"Clearing Poly1: {p1.clear()}")
 
 
 
