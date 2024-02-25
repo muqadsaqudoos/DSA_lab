@@ -46,23 +46,27 @@ class linkedList:
                 return
             temp2 = temp
             temp = temp.next
-        """
-    def insert_after(self,val,key):
+
+
+    def insert_after(self,key,val):
         if self.head is None:
-            return 
-        elif self.head.val == key:
+            return
+        elif self.head.val == key and self.head.next is None :
             self.head.next = node(val)
-        temp1 = self.head
-        temp2 = self.head.next
-        while temp2 is not None:
-            if temp1.val == key:
-                newNode = node(val)
-                newNode.next = temp2
-                temp1.next = newNode
-            temp1 = temp1.next
-            temp2 = temp2.next
-        
-"""
+            return
+        else:
+            temp = self.head
+            while temp is not None:
+                if temp.val == key and temp.next is None:
+                    temp.next = node(val)
+                    return
+                elif temp.val == key:
+                    newNode = node(val)
+                    newNode.next = temp.next
+                    temp.next = newNode
+                    return
+                temp = temp.next
+            
 
 
     #Remove
@@ -212,25 +216,27 @@ class linkedList:
                 return True
             return False     
 
-"""
-     #task3
-    def combine(self, list1, list2):
+
+    #task3          
+           
+    def combine(self,list1,list2):
+       
         if list1.head is None and list2.head is None:
-            return 
-        elif list1.head is None :
-            self.head = list1.head
-            return 
-        elif list2.head is None :
+            return
+        elif list1.head is None:
             self.head = list2.head
-            return 
+            return
+        elif list2.head is None:
+            self.head = list1.head
+            return
         else:
             self.head = list1.head
             temp = list1.head
-            while temp.next is not None:
+            while temp is not None:
                 temp = temp.next
-            temp.next = list2.head
+                temp.next = list2.head
                 
-
+"""
         #task 5
     def removeDuplicates(self):
             if self.head is None:
@@ -290,18 +296,23 @@ class linkedList:
     
 """            
                 
-            
-            
-                
-            
 def main():
     root = linkedList()
-    root.insert_at_tail(5)    
-    root.insert_at_tail(10)    
-    root.insert_at_tail(20)    
-    root.insert_at_tail(23)    
-    root.insert_at_tail(25)
-    print(root.remove_kth_node(0))
+    root.insert_at_tail(15)
+    root.insert_at_tail(20)
+    root.insert_at_tail(20)
+    root.insert_at_tail(20)
+    root.insert_after(15,17)
     root.display()
+    print()
+    root1 = linkedList()
+    root1.insert_at_tail(25)
+    root1.insert_at_tail(30)
+    root1.display()
+    print()
+    root3 = linkedList()
+    root3.combine(root,root1)
+    root3.display()
+    
 main()
 
