@@ -137,6 +137,8 @@ class linkedList:
             print(temp.val,end = " ")
             temp = temp.next
 
+        print()
+
     def search(self,key):
         
         if self.head is None:
@@ -186,12 +188,12 @@ class linkedList:
         if self.head.val == val:
             self.head = self.head.next
 
-        current = self.head
-        while current.next is not None and current.next.val != val:
-            current = current.next
-        if current.next is not None:
-            current.next = current.next.next
+        temp = self.head
+        while temp.next is not None and temp.next.val != val:
+            temp = temp.next
 
+        if temp.next is not None:
+            temp.next = temp.next.next
         
             
     
@@ -220,7 +222,6 @@ class linkedList:
     #task3          
            
     def combine(self,list1,list2):
-       
         if list1.head is None and list2.head is None:
             return
         elif list1.head is None:
@@ -232,38 +233,36 @@ class linkedList:
         else:
             self.head = list1.head
             temp = list1.head
-            while temp is not None:
+            while temp.next is not None:
                 temp = temp.next
-                temp.next = list2.head
+            temp.next = list2.head
+            return
                 
-"""
-        #task 5
-    def removeDuplicates(self):
-            if self.head is None:
-                return
-            l = []
-            temp = self.head
-            prev = None
-            while temp:
-                if temp.val in l:
-                    self.remove(temp.val)
-                l.append(temp.val)
-                temp = temp.next
-            
+    def remove_duplicate(self):
+        if self.head is None:
+            return
+        current = self.head
+        l = []
+        while current is not None:
 
+            if current.val in l:
+                self.remove(current.val)
+            l.append(current.val)
+            current = current.next
 
     def reverse(self):
-        if self.head is None:
-            return None
-        l = []
-        temp = self.head
-        while temp is not None:
-            l.append(temp.val)
-            temp = temp.next
+        prev = None
+        current = self.head
+        while current is not None:
+            next_node = current.next 
+            current.next = prev
+            prev = current 
+            current = next_node
+        self.head = prev
 
-        for i in range(len(l)-1,-1,-1):
-            print(l[i],end= " ")
 
+
+        
 
     def recursion_reverse(self,head):
         if not head:
@@ -271,48 +270,50 @@ class linkedList:
       
         self.recursion_reverse(head.next)
         print(f"\n{head.val}")
-        
-            
+         
         
     def mergeShuffle(self, list1, list2):
         if list1.head is None and list2.head is None:
             return 
         elif list1.head is None :
-            self.head = list1.head
-            return 
-        elif list2.head is None :
             self.head = list2.head
             return 
-        else:
-            while list11 is not None:
-                self.head.next = list1.head
-                self.head.next = list2.head
-                list1 = list1.next
-                list2 = list2.next
-                
-                
-                
+        elif list2.head is None :
+            self.head = list1.head
+            return 
+        elif list1.head.next is None and list2.head.next is None:
+            self.head = list1.head
+            list1.head.next = list2.head
 
-    
-"""            
+        else:
+            self.head = list1.head
+            temp1 = list1.head
+            temp2 = list1.head.next
+            temp3 = list2.head
+            temp4 = list2.head.next
+            while temp4.next is not None:
+                temp1.next = temp3
+                temp3.next = temp2
+                temp1 = temp2
+                temp2 = temp2.next
+                temp3 = temp4
+                temp4 = temp4.next
+            temp2.next = temp4
+
+                
+               
+                           
                 
 def main():
-    root = linkedList()
-    root.insert_at_tail(15)
-    root.insert_at_tail(20)
-    root.insert_at_tail(20)
-    root.insert_at_tail(20)
-    root.insert_after(15,17)
-    root.display()
-    print()
     root1 = linkedList()
-    root1.insert_at_tail(25)
-    root1.insert_at_tail(30)
-    root1.display()
-    print()
+    root1.insert_at_tail(10)
+    root2 = linkedList()
+    root2.insert_at_tail(15)
     root3 = linkedList()
-    root3.combine(root,root1)
+    root3.mergeShuffle(root1,root2)
     root3.display()
+    
+
     
 main()
 
