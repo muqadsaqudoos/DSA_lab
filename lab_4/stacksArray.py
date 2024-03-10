@@ -29,20 +29,52 @@ class Stacks:
             return "Stack is empty"
         return self.stacks[-1]
 
+    def balancedParanthesis(self,eq):
+        opening = ["(", "{" , "["]
+        closing = [")", "}", "]"]
+        for i in range(len(eq)):
+            if eq[i] == "(" or eq[i] == "{" or eq[i] == "[":
+                self.push(eq[i])
+            elif (self.peek() == opening[0] and eq[i] == closing[0]) or (self.peek() == opening[1] and eq[i] == closing[1]) or (self.peek() == opening[2] and eq[i] == closing[2]):
+                self.pop()
+
+        if self.count == 0:
+            print("Balanced Paranthesis")
+        else:
+            print("Not balanced paranthesis")
+
+def stringWordsReverse(line):
+    s = " "
+    obj = Stacks()
+    for i in range(len(line)):
+        if line[i] == " ":
+            while not obj.is_empty():
+                s += str(obj.pop())
+            s += " "
+
+        else:
+            obj.push(line[i])
+    while not obj.is_empty():
+        s += obj.pop()
+    return s
+
     
+
+
+        
+
+
+            
 
 def main():
     root = Stacks()
-    root.push(5)
-    root.push(10)
-    root.push(15)
-    print(root.count)
-    root.display()
-    print(root.peek())
-    root.pop()
-    print(root.count)
-    print(root.peek())
-
+    print("Paranthesies")
+    root.balancedParanthesis("[{(a + b) * (c - d)}")
+    print()
+    print("string Words Reverse")
+    print(stringWordsReverse("Welcome to DSA"))
+    
 main()
+
 
 
