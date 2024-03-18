@@ -7,31 +7,31 @@ def precedence(op):
         return 0
 
 def is_operand(ch):
-    return ch.isnumeric()
+    return ch.isalpha()
 
-def infix_to_prefix(string):
+def infix_to_prefix(infix):
     stack = []
-    output = ""
-    string = string[::-1]
-    for char in string:
+    prefix = ""
+    infix = infix[::-1]
+    for char in infix:
         if is_operand(char):
-            output += char 
-        elif char == "(":
-            stack.append(char)
+            prefix += char
         elif char == ")":
-            while stack and stack[-1] != "(":
-                
-                output += stack.pop()
-            stack.pop()
-        else:  
-            while stack and precedence(stack[-1]) >precedence(char):
-                output += stack.pop()
+            stack.append(char)
+        elif char == "(":
+            while stack and stack[-1] != ")":
+                prefix += stack.pop()
+            if stack:
+                stack.pop()
+        else:
+            while stack and precedence(stack[-1])>=precedence(char):
+                prefix += stack.pop()
+
             stack.append(char)
 
     while stack:
-
-        output += stack.pop()
-    return output[::-1]
+        prefix += stack.pop()
+    return prefix[::-1]
 
 
 a = "(A+B)*(C+D)"
