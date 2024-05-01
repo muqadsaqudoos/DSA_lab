@@ -7,7 +7,9 @@ def precedence(op):
         return 0
 
 def is_operand(ch):
-    return ch.isalpha()
+    a = ["+","*","-","/","^","(",")","{","}","[","]"]
+    if ch not in a:
+        return True
 
 def infix_to_prefix(infix):
     stack = []
@@ -34,5 +36,5 @@ def infix_to_prefix(infix):
     return prefix[::-1]
 
 
-a = "(A+B)*(C+D)"
+a = "(a+(b*c)/(d-e))"
 print(infix_to_prefix(a))

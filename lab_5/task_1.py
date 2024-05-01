@@ -8,7 +8,9 @@ def precedence(op):
         return 0
 
 def is_operand(ch):
-    return ch.isnumeric()
+    a = ["+","*","-","/","^","(",")","{","}","[","]"]
+    if ch not in a:
+        return True
 
 def infix_to_postfix(string):
     stack = []
@@ -36,7 +38,7 @@ def infix_to_postfix(string):
     return output
 
 
-a = "(300+23)*(43-21)/(84+7)"
+a = "(A+B/C*(D+E)-F)"
 print(infix_to_postfix(a))
 
 

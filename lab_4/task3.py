@@ -55,3 +55,20 @@ class CircularQueue():
         if (self.rear+1)%self.size == self.front:
             return True
         return False
+def main(): 
+    ob = CircularQueue(5)
+    ob.enqueue(14)
+    ob.enqueue(22)
+    ob.enqueue(13)
+    ob.enqueue(-6)
+    ob.enqueue(7)
+    ob.enqueue(2)
+    ob.display()
+    print("Deleted value = ", ob.dequeue())
+    print("Deleted value = ", ob.dequeue())
+    ob.display()
+    ob.enqueue(9)
+    ob.enqueue(20)
+    ob.enqueue(5)
+    ob.display()
+main()

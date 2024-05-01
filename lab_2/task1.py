@@ -5,5 +5,5 @@ def dec2oct(n):
         return "1"
     return (dec2oct(n//8)) + str(n%8)
 
-print(dec2oct(8))
+print(dec2oct(10))
 print(dec2oct(25))
