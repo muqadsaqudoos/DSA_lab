@@ -49,18 +49,21 @@ class StudentMaxHeap:
             else:
                 break
     def _heapify_down(self, index):
-        
-        while 2*index+1<self.currSize:
-            l = 2*index+1
-            r = 2*index+2
+        while 2 * index + 1 < self.currSize:
+            left = 2 * index + 1
+            right = 2 * index + 2
             max_cgpa = index
-            if l<self.currSize and self.student[l].cgpa>self.student[index].cgpa:
-                self.student[l],self.student[index] = self.student[index],self.student[l]
-                max_cgpa = l
-            if r>self.currSize and self.student[r].cgpa>self.student[max_cgpa].cgpa:
-                self.student[r],self.student[index] = self.student[index],self.student[r]
-                max_cgpa = r
-            index = max_cgpa
+
+            if left < self.currSize and self.student[left].cgpa > self.student[max_cgpa].cgpa:
+                max_cgpa = left
+            if right < self.currSize and self.student[right].cgpa > self.student[max_cgpa].cgpa:
+                max_cgpa = right
+            if max_cgpa != index:
+                self.student[index], self.student[max_cgpa] = self.student[max_cgpa], self.student[index]
+                index = max_cgpa
+            else:
+                break
+
     
 
 heap = StudentMaxHeap(10)

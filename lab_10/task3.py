@@ -21,24 +21,24 @@ class StudentMaxHeap:
             return False
         self.student[self.currSize] = student
         self._heapify_up(self.currSize)
-        self.currSize += 1
+        self.currSize+=1
         return True
 
     def removeBestStudent(self):
         if self.isEmpty():
             return None
-        max_student = self.student[0]
-        self.student[0] = self.student[self.currSize - 1]
-        self.student[self.currSize - 1] = None
-        self.currSize -= 1
+        max_student=self.student[0]
+        self.student[0]=self.student[self.currSize-1]
+        self.student[self.currSize - 1]=None
+        self.currSize-=1
         self._heapify_down(0)
         return max_student
 
 
     def _heapify_up(self, index):
         while index > 0:
-            parent = (index - 1) // 2
-            if self.student[index].freq > self.student[parent].freq:
+            parent = (index-1)//2
+            if self.student[index].freq>self.student[parent].freq:
                 self.student[parent], self.student[index] = self.student[index], self.student[parent]
                 index = parent
             else:
@@ -49,12 +49,10 @@ class StudentMaxHeap:
             left = 2 * index + 1
             right = 2 * index + 2
             largest = index
-
             if left < self.currSize and self.student[left].freq > self.student[largest].freq:
                 largest = left
             if right < self.currSize and self.student[right].freq > self.student[largest].freq:
                 largest = right
-
             if largest != index:
                 self.student[largest], self.student[index] = self.student[index], self.student[largest]
                 index = largest

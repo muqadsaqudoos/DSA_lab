@@ -47,17 +47,18 @@ class StudentMaxHeap:
         while 2 * index + 1 < self.currSize:
             left = 2 * index + 1
             right = 2 * index + 2
-            max_index = index
+            max_cgpa = index
 
-            if left < self.currSize and self.student[left].value > self.student[max_index].value:
-                max_index = left
-            if right < self.currSize and self.student[right].value > self.student[max_index].value:
-                max_index = right
-            if max_index != index:
-                self.student[index], self.student[max_index] = self.student[max_index], self.student[index]
-                index = max_index
+            if left < self.currSize and self.student[left].cgpa > self.student[max_cgpa].cgpa:
+                max_cgpa = left
+            if right < self.currSize and self.student[right].cgpa > self.student[max_cgpa].cgpa:
+                max_cgpa = right
+            if max_cgpa != index:
+                self.student[index], self.student[max_cgpa] = self.student[max_cgpa], self.student[index]
+                index = max_cgpa
             else:
                 break
+
 
 def main():
     def maxProduct(l):
@@ -67,7 +68,6 @@ def main():
         a = StudentMaxHeap(len(l))
         for num in l:
             a.insert(Student(num))
-
         i = a.removeBestStudent().value
         j = a.removeBestStudent().value
         return (i - 1) * (j - 1)
